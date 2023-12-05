@@ -1,17 +1,13 @@
 import os
 import requests
 
-
-def send_webhook(user, event):
-    # Customize those!
-    endpoint = os.environ["DISPATCH_TO_URL"]
+def send_webhook(src, dst, msg):
+    endpoint = os.environ["DISPATCH_TO_URL"].removeprefix('https://')
     api_key = os.environ["DISPATCH_API_KEY"]
     payload = {
-        "from": "webhook",
-        "to": user,
-        "notification": {
-            "event": event
-        }
+        "from": src,
+        "to": dst,
+        "message": msg
     }
 
     r = requests.post(f"https://dispatch.stealthrocket.cloud/{endpoint}",
@@ -20,9 +16,8 @@ def send_webhook(user, event):
                       },
                       json=payload)
     r.raise_for_status()
-
-    print(r.text)
+    print(r.text.strip())
 
 
 if __name__ == '__main__':
-    send_webhook('cool-person', {'action': 'starting to use', 'app': 'Dispatch'})
+    send_webhook('example', 'webhook', 'hello, world!')
