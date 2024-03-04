@@ -14,4 +14,4 @@ how to develop with Dispatch.
 
 ## Documentation
 
-For the full Dispatch documentation, see the [docs](https://docs.stealthrocket.cloud).
+For the full Dispatch documentation, see the [docs](https://docs.dispatch.run).
