@@ -22,7 +22,7 @@ func main() {
 	})
 
 	req, _ := http.NewRequest(http.MethodGet,
-		"https://dispatch.stealthrocket.cloud/"+endpoint, bytes.NewBuffer(payload),
+		"https://proxy.dispatch.run/"+endpoint, bytes.NewBuffer(payload),
 	)
 	req.Header.Set("Proxy-Authorization", "Bearer "+apiKey)
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")

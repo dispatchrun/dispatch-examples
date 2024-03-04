@@ -10,7 +10,7 @@ def send_webhook(src, dst, msg):
         "message": msg
     }
 
-    r = requests.post(f"https://dispatch.stealthrocket.cloud/{endpoint}",
+    r = requests.post(f"https://proxy.dispatch.run/{endpoint}",
                       headers = {
                           "Proxy-Authorization": f"Bearer {api_key}"
                       },
