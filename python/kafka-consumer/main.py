@@ -7,7 +7,7 @@ from dispatch.fastapi import Dispatch
 from kafka import KafkaConsumer
 
 
-logging.basicConfig(level=logging.WARNING)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 BROKERS = ["localhost:9092", "localhost:9093", "localhost:9094"]
@@ -25,7 +25,7 @@ dispatch = Dispatch(app)
 def send_message(payload):
     response = requests.post(URL, data=payload)
     response.raise_for_status()
-    return resopnse
+    return response
 
 
 def consume_messages():
