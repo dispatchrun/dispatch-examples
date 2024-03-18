@@ -33,6 +33,11 @@ producer:
 		--topic $(TOPIC) \
 		--bootstrap-server $(BOOTSTRAP_SERVER)
 
+pipe:
+	$(DOCKER_COMPOSE) exec --no-TTY kafka1 kafka-console-producer \
+		--topic $(TOPIC) \
+		--bootstrap-server $(BOOTSTRAP_SERVER)
+
 consumer:
 	$(DOCKER_COMPOSE) exec kafka1 kafka-console-consumer \
 		--topic $(TOPIC) \
