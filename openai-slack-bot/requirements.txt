@@ -1,0 +1,5 @@
+dispatch-py==0.3.0
+fastapi
+httpx
+openapi
+slack_sdk
