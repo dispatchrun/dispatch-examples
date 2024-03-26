@@ -20,9 +20,7 @@ make users
 
 Generate a test endpoint by visiting:
 
-```
 https://webhook.site/
-```
 
 ## Sync users the naive way
 
