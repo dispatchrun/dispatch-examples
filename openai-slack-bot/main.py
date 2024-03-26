@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Response
 from dispatch.fastapi import Dispatch
-from dispatch.status import Status, register_error_type, register_output_type
 
-from openai import OpenAI, APIStatusError
+from openai import OpenAI
 from slack_sdk import WebClient
 from slack_sdk.web.slack_response import SlackResponse
 from slack_sdk.signature import SignatureVerifier
@@ -44,7 +43,7 @@ signature_verifier = SignatureVerifier(os.environ["SLACK_SIGNING_SECRET"])
 
 
 @dispatch.function
-async def completion(msg: str) -> str:
+def completion(msg: str) -> str:
     result = openai_client.chat.completions.create(
             messages=[
                 {
@@ -58,17 +57,11 @@ async def completion(msg: str) -> str:
 
 
 @dispatch.function
-async def post_slack(msg: str) -> SlackResponse:
-    resp = slack_client.chat_postMessage(
+def post_slack(msg: str) -> SlackResponse:
+    return slack_client.chat_postMessage(
         channel="#notifications",
         text=msg,
-        )
-
-    if resp.status_code == 429:
-        delay = resp.headers["Retry-After"]
-        time.sleep(delay)
-
-    return resp
+    )
 
 
 @dispatch.function
@@ -95,25 +88,3 @@ def slack_app(event: Union[SlackMessageAppHome, SlackChallenge]):
 @app.get("/prompt")
 async def prompt(msg: str):
     prompt_pipeline.dispatch(msg)
-
-
-def openai_apistatus_error(error: APIStatusError) -> Status:
-    print("error", error)
-    match error.status_code:
-        case 429:
-            return Status.TEMPORARY_ERROR
-    return Status.PERMANENT_ERROR
-
-
-register_error_type(APIStatusError, openai_apistatus_error)
-
-
-def slack_response_handler(resp: SlackResponse) -> Status:
-    if resp.status_code == 429:
-        return Status.TEMPORARY_ERROR
-    if resp.status_code > 399:
-        return Status.PERMANENT_ERROR
-    return Status.OK
-
-
-register_output_type(SlackResponse, slack_response_handler)
