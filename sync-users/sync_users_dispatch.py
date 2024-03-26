@@ -8,6 +8,7 @@ from dispatch import Registry
 
 
 FILE = "users.db"
+BATCH_SIZE = 10
 
 
 endpoint = os.getenv("DISPATCH_ENDPOINT_URL")
@@ -31,8 +32,13 @@ class User:
 def export_users_to_salesforce(db, instance_url, access_token):
     with closing(db.cursor()) as cursor:
         cursor.execute("SELECT id, first_name, last_name, address, email FROM users")
+        batch = dispatch.client.batch()
         for row in cursor:
-            send_user_to_salesforce.dispatch(User(*row), instance_url, access_token)
+            batch.add(send_user_to_salesforce, User(*row), instance_url, access_token)
+            if len(batch.calls) == BATCH_SIZE:
+                batch.dispatch()
+        if len(batch.calls) > 0:
+            batch.dispatch()
 
 
 @dispatch.function
