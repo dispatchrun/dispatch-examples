@@ -31,4 +31,5 @@ def handle_message(id: str, body: str):
     print('processing message:', id, body)
 
 
-dispatch.run()
+if __name__ == '__main__':
+    dispatch.run()
