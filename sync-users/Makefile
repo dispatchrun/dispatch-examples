@@ -1,3 +1,5 @@
+.PHONY: users clean
+
 users: users.db
 
 users.db:
