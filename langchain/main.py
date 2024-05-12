@@ -17,7 +17,7 @@ class TranslateParams:
 
 
 @dispatch.function
-def translate_with(params: TranslateParams) -> dict:
+def translate_with(params: TranslateParams):
     print(f"Translating '{params.phrase}' to '{params.language}'")
 
     template = """You are a helpful assistant who translates between languages.
