@@ -1,6 +1,25 @@
 # Forward messages from Kafka to endpoint
 
-The example shows how to forward messages from Kafka to an endpoint.
+[Apache Kafka](https://kafka.apache.org/) is an open-source distributed event streaming
+platform used by thousands of companies for high-performance data pipelines, streaming analytics,
+data integration, and mission-critical applications.
+
+Although Kafka has many desirable attributes as a message queue, including its excellent
+performance and durability characteristics, it suffers from a serious flaw with some uses cases;
+head-of-line blocking. When message processing fails with a temporary error, the consumer
+cannot make progress on subsequent messages in the queue. It must either retry the operation
+inline, or copy the message to another location so that it can continue to make progress.
+
+When paired with Dispatch, Kafka's head-of-line blocking flaw is no longer an issue. Dispatch
+takes over scheduling the processing of each message, allowing the consumer to make progress
+even when there are issues that prevent messages from being processed.
+
+In this example, we look at how to send messages from Kafka to an endpoint. Since there is a
+network between the consumer (this script) and the endpoint, the request to send the message
+may fail. This failure is automatically handled by Dispatch. Dispatch also automatically
+adapts processing concurrency to match the capabilities of the endpoint. The user does not
+have to think about manual retries to ensure messages get through, and to think about
+throttling consumption of messages to ensure the endpoint isn't overloaded.
 
 ## Setup
 
