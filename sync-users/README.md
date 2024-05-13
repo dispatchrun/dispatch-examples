@@ -18,18 +18,26 @@ Generate a fake user database:
 make users
 ```
 
-[Signup for Dispatch](https://console.dispatch.run/) and then
-configure the API key:
+Install the [Dispatch CLI](https://github.com/dispatchrun/dispatch):
 
 ```
-export DISPATCH_API_KEY="<your-api-key>"
+brew tap dispatchrun/dispatch
+brew install dispatch
 ```
+
+For other ways to install, see the [Dispatch CLI README](https://github.com/dispatchrun/dispatch).
+
+Login to Dispatch, or create a free account:
+
+```
+dispatch login
+```
+
+## Sync users the naive way
 
 Generate a webhook to send data to by visiting:
 
-https://webhook.site/
-
-## Sync users the naive way
+[https://webhook.site/](https://webhook.site/)
 
 Sync users to the endpoint (replacing the URL with your webhook):
 
@@ -39,21 +47,8 @@ python sync_users.py https://webhook.site/834f219e-87e3-4f32-8051-0019887b13dd t
 
 ## Sync users with Dispatch
 
-Start a local Dispatch endpoint:
+Sync users to the endpoint using Dispatch (replacing the URL with your webhook):
 
 ```
-DISPATCH_ENDPOINT_URL="http://localhost:8000" python dispatch_endpoint.py
-```
-
-Start an ngrok tunnel to make the local endpoint accessible to Dispatch:
-
-```
-ngrok http http://localhost:8000
-```
-
-Sync users with Dispatch (replacing the URLs with your tunnel URL / webhook):
-
-```
-DISPATCH_ENDPOINT_URL="https://c870-2001-8004-1b30-11ad-d42-e296-350b-ca8e.ngrok-free.app" \
-  python sync_users_dispatch.py https://webhook.site/834f219e-87e3-4f32-8051-0019887b13dd test-token
+dispatch run -- python sync_users_dispatch.py https://webhook.site/834f219e-87e3-4f32-8051-0019887b13dd test-token
 ```

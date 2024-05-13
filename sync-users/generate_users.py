@@ -5,7 +5,7 @@ from faker import Faker
 
 SEED = 0
 FILENAME = "users.db"
-COUNT = 20
+COUNT = 3
 
 
 def generate_user(faker):
