@@ -23,13 +23,7 @@ throttling consumption of messages to ensure the endpoint isn't overloaded.
 
 ## Setup
 
-Setup a virtualenv with the required dependencies:
-
-```
-python3 -m venv env
-source ./env/bin/activate
-pip install -r requirements
-```
+### Setup Dispatch
 
 Install the [Dispatch CLI](https://github.com/dispatchrun/dispatch):
 
@@ -46,7 +40,7 @@ Login to Dispatch, or create a free account:
 dispatch login
 ```
 
-## Setup Kafka
+### Setup Kafka
 
 To setup an ephemeral Kafka cluster using [Docker Compose](https://docs.docker.com/compose/), run:
 
@@ -62,12 +56,23 @@ make producer
 
 Enter one message per line and then hit enter to write it to the Kafka cluster.
 
+### Setup the example
 
-## Forward messages from Kafka
+Setup a virtualenv with the required dependencies:
+
+```
+python3 -m venv env
+source ./env/bin/activate
+pip install -r requirements
+```
+
+### Setup a temporary endpoint
 
 To generate a test endpoint, visit:
 
 [https://webhook.site/](https://webhook.site/)
+
+## Forward messages from Kafka
 
 Forward messages from Kafka to the endpoint using Dispatch (replacing the URL with your endpoint):
 
