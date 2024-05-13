@@ -1,5 +1,8 @@
 # Langchain
 
+> [!TIP]
+> Check out our [Getting Started](https://docs.dispatch.run/getting-started/) guide to install and configure the Dispatch CLI.
+
 Simple example of using Dispatch to build a durable Langchain based application.
 
 ```

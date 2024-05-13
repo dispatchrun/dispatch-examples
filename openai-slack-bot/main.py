@@ -6,7 +6,6 @@ from slack_sdk import WebClient
 from slack_sdk.web.slack_response import SlackResponse
 from slack_sdk.signature import SignatureVerifier
 
-import time
 import os
 from pydantic import BaseModel, ConfigDict
 from typing import Union

@@ -1,5 +1,8 @@
 # OpenAI Slack bot
 
+> [!TIP]
+> Check out our [Getting Started](https://docs.dispatch.run/getting-started/) guide to install and configure the Dispatch CLI.
+
 Your personal assistant on Slack!
 
 ```
@@ -19,3 +22,11 @@ Additional configuration required:
 - `OPENAI_API_KEY`: provisioned OpenAI API key.
 - `SLACK_BOT_TOKEN`: Token for the configured Slack app.
 - `SLACK_SIGING_KEY`: Signing key for the configured Slack app.
+
+## Run it
+
+Run it locally with the Dispatch CLI:
+
+```
+dispatch run -- uvicorn main:app
+```
