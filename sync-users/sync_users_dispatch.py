@@ -72,3 +72,6 @@ if __name__ == "__main__":
         pass
     finally:
         db.close()
+
+    # Block until Dispatch exits.
+    thread.join()
