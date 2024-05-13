@@ -1,4 +1,4 @@
-import logging
+import sys
 import threading
 
 import dispatch
@@ -22,7 +22,7 @@ def forward_messages(url):
     consumer = KafkaConsumer(TOPIC, group_id=GROUP, bootstrap_servers=BROKERS)
     try:
         for message in consumer:
-            send_message.dispatch(url, payload)
+            send_message.dispatch(url, message.value)
     finally:
         consumer.close()
 
