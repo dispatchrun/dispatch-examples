@@ -1,4 +1,4 @@
-dispatch-py>=0.4.0
+dispatch-py>=0.7.1
 fastapi
 httpx
 openapi
