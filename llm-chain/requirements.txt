@@ -1,0 +1,7 @@
+fastapi
+dispatch-py>=0.7.1
+uvicorn>=0.29.0
+beautifulsoup4
+langchain-openai
+langchain
+requests
