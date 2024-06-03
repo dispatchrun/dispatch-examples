@@ -1,0 +1,3 @@
+dispatch-py[fastapi]
+langchain
+langchain-openai
