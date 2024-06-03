@@ -27,9 +27,10 @@ def parse_html(content) -> str:
 
 @dispatch.function
 def summarize(doc: str) -> str:
-    system = """You are a software engineer."""
+    system = """You are a software engineer looking at learning new things."""
     prompt = """
-    You must summarize today's news from Hacker News in 3 sentences.
+    Summarize this news content in 3 sentences. What's hot today?
+    {content}
     """
     return prompt_openai(system, prompt, doc)
 
@@ -38,8 +39,9 @@ def summarize(doc: str) -> str:
 def classify(doc: str) -> str:
     system = """You are a tech journalist."""
     prompt = """
-    Find a catchy title, in a single sentence,
-    for today's news from Hacker News: {content}
+    Find a catchy title for this news content.
+    What's the main topic? in a single sentence.
+    {content}
     """
     return prompt_openai(system, prompt, doc)
 
