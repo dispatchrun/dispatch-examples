@@ -1,4 +1,5 @@
 # dispatch-examples
+
 Runnable code snippets demonstrating how to use Dispatch
 
 ## Python
@@ -11,6 +12,16 @@ python3 ./python/<example>.py
 
 Each example is a short Python program that can be used as a playground to learn
 how to develop with Dispatch.
+
+## Go
+
+The Go code examples are in the `go` directory. To run any of the examples:
+
+```
+cd ./go/<example> && dispatch run -- go run main.go
+```
+
+Each example is a short Go program that can be used as a playground to learn how to develop with Dispatch.
 
 ## Documentation
 
